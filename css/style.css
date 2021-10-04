@@ -1,6 +1,9 @@
+body {
+    text-align: center;
+}
+
 table {
-    margin: auto;
-    margin-top: 30px;
+    margin: 10px auto;
     table-layout: fixed;
 }
 
@@ -15,4 +18,15 @@ table {
 
 h4 {
     text-align: center;
+}
+
+button {
+    margin: 15px;
+}
+
+#reset-game-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0px;
 }
