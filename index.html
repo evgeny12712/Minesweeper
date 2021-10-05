@@ -15,18 +15,26 @@
         <img src="images/heart.png" />
         <img src="images/heart.png" />
         <img src="images/heart.png" /></h4>
+    <div id="hints-container">
+        <h4 id="hints">Hints :
+            <img src="images/hint.png" />
+            <img src="images/hint.png" />
+            <img src="images/hint.png" /></h4>
+        <button id="hints-btn" onclick="hintMode()">Use hint!</button>
+    </div>
     <h4> Time : <span id="timer"></span></h4>
     <button id="reset-game-btn" onclick='resetGame()'>😊</button>
     <table oncontextmenu="return false;">
         <tbody>
         </tbody>
     </table>
-    <button onclick="updateLevel(this)">Beginner</button>
-    <button onclick="updateLevel(this)">Medium</button>
-    <button onclick="updateLevel(this)">Expert</button>
+    <button class="level-btn" onclick="updateLevel(this)">Beginner</button>
+    <button class="level-btn" onclick="updateLevel(this)">Medium</button>
+    <button class="level-btn" onclick="updateLevel(this)">Expert</button>
     <script src="js/main.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/mines.js"></script>
+    <script src="js/cells.js"></script>
 </body>
 
 </html>
