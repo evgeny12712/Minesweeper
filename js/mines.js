@@ -5,20 +5,14 @@ function revealMines() {
         for (var j = 0; j < gBoard.length; j++) {
             if (gBoard[i][j].isMine) {
                 gBoard[i][j].isShown = true;
-                gGame.shownCount++;
-                renderCell({ i, j }, 'M');
+                renderCell({ i, j }, MINE_IMG);
             }
         }
     }
 }
 
 function isAllMinesMarked() {
-    for (var i = 0; i < gBoard.length; i++) {
-        for (var j = 0; j < gBoard.length; j++) {
-            if (gBoard[i][j].isMine && !gBoard[i][j].isMarked) return false;
-        }
-    }
-    return true;
+    return gGame.markedCount === gLevel.MINES;
 }
 
 function getMinesLocations() {
@@ -31,11 +25,11 @@ function getMinesLocations() {
     return mines
 }
 
-function setMinesRandomly(numOfMines) {
-    for (var i = 0; i < numOfMines; i++) {
+function setMinesRandomly(ignoreLocation) {
+    for (var i = 0; i < gLevel.MINES; i++) {
         var row = getRandomInt(0, gLevel.SIZE);
         var col = getRandomInt(0, gLevel.SIZE);
-        if (gBoard[row][col].isMine) i--;
+        if (gBoard[row][col].isMine || (row === ignoreLocation.i && col === ignoreLocation.j)) i--;
         else gBoard[row][col].isMine = true;
     }
 }

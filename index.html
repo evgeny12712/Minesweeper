@@ -10,13 +10,15 @@
 </head>
 
 <body onload="initGame()">
-    <h4 id="messages"> Good Luck!</h4>
-    <h4 id="lives">Lives : <span>3</span></h4>
+    <h1 id="messages">Good Luck!</h1>
+    <h4 id="lives">Lives :
+        <img src="images/heart.png" />
+        <img src="images/heart.png" />
+        <img src="images/heart.png" /></h4>
     <h4> Time : <span id="timer"></span></h4>
     <button id="reset-game-btn" onclick='resetGame()'>😊</button>
     <table oncontextmenu="return false;">
         <tbody>
-
         </tbody>
     </table>
     <button onclick="updateLevel(this)">Beginner</button>
@@ -24,7 +26,7 @@
     <button onclick="updateLevel(this)">Expert</button>
     <script src="js/main.js"></script>
     <script src="js/utils.js"></script>
-    <script src="js/mines.js"></script>>
+    <script src="js/mines.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,9 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 body {
+    background-image: url("images/background.png");
     text-align: center;
 }
 
@@ -12,16 +17,42 @@ table {
     height: 40px;
     text-align: center;
     font-size: 1.5em;
-    border: 1px solid black;
+    border: 1px solid white;
     cursor: pointer;
 }
 
+.cell * {
+    text-shadow: 0px 0px 25px rgba(255, 255, 255);
+}
+
+#lives {
+    margin: 5px;
+}
+
+#lives img {
+    height: 20px;
+}
+
+h1,
 h4 {
-    text-align: center;
+    color: white;
+    margin: 5px;
+    ;
 }
 
 button {
-    margin: 15px;
+    background-color: white;
+    color: black;
+    padding: 12px 24px;
+    margin: 30px;
+    border: 3px solid #f6c156;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: #f6c156;
+    /* Green */
+    color: white;
 }
 
 #reset-game-btn {
@@ -29,4 +60,8 @@ button {
     border: none;
     cursor: pointer;
     margin: 0px;
+}
+
+img {
+    height: 70%;
 }
