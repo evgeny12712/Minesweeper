@@ -9,3 +9,7 @@ function getRandomInt(min, max) {
 function isNum(val) {
     return !isNaN(val) && val !== '';
 }
+
+function isOutOfBoard(pos, size) {
+    return (pos.i < 0 || pos.i > size - 1 || pos.j < 0 || pos.j > size - 1);
+}

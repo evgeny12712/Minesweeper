@@ -77,10 +77,7 @@ function cellClicked(elCell) {
     }
     if (cell.minesAroundCount === 0) expandShown(cellLocation);
 
-    if (!cell.isShown) {
-        cell.isShown = true;
-        gGame.shownCount++;
-    }
+    toggleIsShown(cell);
     renderCell(cellLocation, cell.minesAroundCount);
     isWin();
 }
@@ -123,18 +120,28 @@ function setCellsMinesCounter(minesLocations) {
 }
 
 function expandShown(cellLocation) {
-    for (var i = cellLocation.i - 1; i <= cellLocation.i + 1; i++) {
-        if (i < 0 || i >= gLevel.SIZE) continue;
-        for (var j = cellLocation.j - 1; j <= cellLocation.j + 1; j++) {
-            if (j < 0 || j >= gLevel.SIZE) continue;
-            if (i === cellLocation.i && j === cellLocation.j) continue;
 
-            if (!gBoard[i][j].isShown) {
-                gGame.shownCount++;
-                gBoard[i][j].isShown = true;
-            }
-            renderCell({ i, j }, gBoard[i][j].minesAroundCount);
-        }
+    expandShown(cellLocation, direction);
+}
+
+function expandShown(cellLocation) {
+    var nextCellLocation = { i: cellLocation.i + 1, j: cellLocation.j };
+    if (isOutOfBoard(nextCellLocation, gLevel.SIZE)) return;
+    var cell = gBoard[nextCellLocation.i][nextCellLocation.j];
+    if (cell.minesAroundCount !== 0) {
+        toggleIsShown(cell);
+        renderCell(nextCellLocation, cell.minesAroundCount);
+        return;
+    }
+    toggleIsShown(cell);
+    renderCell(nextCellLocation, cell.minesAroundCount);
+    expandShown(nextCellLocation);
+}
+
+function toggleIsShown(cell) {
+    if (!cell.isShown) {
+        cell.isShown = true;
+        cell.shownCount++;
     }
 }
 
