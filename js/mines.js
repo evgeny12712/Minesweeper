@@ -47,3 +47,21 @@ function setup7BoomMines() {
         }
     }
 }
+
+function addMinesManually(cell) {
+    if (!cell.isMine) {
+        var elPosManualBtn = document.getElementById('manual-pos-btn');
+        cell.isMine = true;
+        gMinesCounter++;
+        elPosManualBtn.innerText = 'place ' + (gLevel.MINES - gMinesCounter) + ' more mines!';
+    }
+    if (gMinesCounter === gLevel.MINES) {
+        setMinesNegsCount();
+        gGame.isOn = true;
+        gManualMinesActive = false;
+        gMinesCounter = 0;
+        elPosManualBtn.style.backgroundColor = 'white';
+        elPosManualBtn.innerText = 'Position Manually';
+        cellCursor(false);
+    }
+}

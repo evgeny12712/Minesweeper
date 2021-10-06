@@ -4,12 +4,14 @@ function cellClicked(elCell) {
     startTimer();
     var cellLocation = getLocationFromElCell(elCell);
     var cell = gBoard[cellLocation.i][cellLocation.j];
-    if (gSevenBoomActive) {
+    if (gManualMinesActive) {
+        addMinesManually(cell);
+        return;
+    } else if (gSevenBoomActive) {
         setMinesNegsCount();
         gGame.isOn = true;
         gSevenBoomActive = false;
-    }
-    if (!gGame.isOn) {
+    } else if (!gGame.isOn) {
         gGame.isOn = true;
         setMinesRandomly(cellLocation);
         setMinesNegsCount();

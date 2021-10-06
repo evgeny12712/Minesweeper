@@ -42,8 +42,8 @@ var gSafeClicksCount = 3;
 
 var gSevenBoomActive = false;
 
-
-
+var gManualMinesActive = false;
+var gMinesCounter = 0;
 
 function initGame() {
     gBoard = buildBoard();
@@ -118,7 +118,7 @@ function hintMode() {
         gHintMode = true;
         updateHints(--gHints);
         hintsBtnDisabled(true);
-        hintCellCursor(true);
+        cellCursor(true);
     }
 }
 
@@ -132,17 +132,9 @@ function revealCells(cellLocation) {
         toggleCellsPointer(true);
         gHintMode = false;
         hintsBtnDisabled(false);
-        hintCellCursor(false);
+        cellCursor(false);
     }, 1000);
 
-}
-
-function hintCellCursor(isOn) {
-    var elCells = document.querySelectorAll('.cell');
-    var cellCursor = (isOn) ? 'cell' : 'pointer';
-    for (var i = 0; i < elCells.length; i++) {
-        elCells[i].style.cursor = cellCursor;
-    }
 }
 
 function hintsBtnDisabled(isDisabled) {
@@ -193,7 +185,7 @@ function resetGame() {
     updateMessage('Good Luck!');
     updateLives(gLives);
     updateHints(gHints);
-    updateSafeClicksCount
+    updateSafeClicksCount();
     updateTimer(0);
     updateEmoji('normal');
     initGame();
@@ -288,6 +280,7 @@ function updateMessage(message) {
     var elMessage = document.getElementById('messages');
     elMessage.innerText = message;
 }
+
 
 
 //////////////////////////TIMER//////////////////////////
@@ -403,5 +396,15 @@ function updateSafeClicksCount() {
 //////////////////////////SEVEN_BOOM//////////////////////////
 function sevenBoomClicked() {
     gSevenBoomActive = true;
+    resetGame();
+}
+
+//////////////////////////MANUAL_POSITION//////////////////////////
+
+function positionMinesManually(btn) {
+    btn.innerText = 'place ' + (gLevel.MINES - gMinesCounter) + ' more mines!';
+    btn.style.backgroundColor = '#f6c156';
+    gManualMinesActive = true;
+    cellCursor(true);
     resetGame();
 }
