@@ -22,7 +22,12 @@
             <img src="images/hint.png" /></h4>
         <button id="hints-btn" onclick="hintMode()">Use hint!</button>
     </div>
-    <h4> Time : <span id="timer"></span></h4>
+    <div id='timer-safe-container'>
+        <button id='seven-boom-btn' onclick="sevenBoomClicked()">7 Boom!</button>
+        <h4 id=h4-time> Time : <span id="timer">0</span></h4>
+        <button id='safe-click-btn' onclick="safeClick()">Safe Click</button>
+        <small><span> </span>clicks available!</small>
+    </div>
     <button id="reset-game-btn" onclick='resetGame()'>😊</button>
     <table oncontextmenu="return false;">
         <tbody>
@@ -31,6 +36,9 @@
     <button class="level-btn" onclick="updateLevel(this)">Beginner</button>
     <button class="level-btn" onclick="updateLevel(this)">Medium</button>
     <button class="level-btn" onclick="updateLevel(this)">Expert</button>
+    <h4 id="best-score-h4">Best Score : <span></span> seconds</h4>
+
+
     <script src="js/main.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/mines.js"></script>

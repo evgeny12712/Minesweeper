@@ -33,3 +33,17 @@ function setMinesRandomly(ignoreLocation) {
         else gBoard[row][col].isMine = true;
     }
 }
+
+function setup7BoomMines() {
+    var sevenBoomCounter = 0;
+    gLevel.MINES = 0;
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard.length; j++) {
+            if (sevenBoomCounter !== 0 && (sevenBoomCounter % 7 === 0 || sevenBoomCounter.toString().includes('7'))) {
+                gBoard[i][j].isMine = true;
+                gLevel.MINES++;
+            }
+            sevenBoomCounter++;
+        }
+    }
+}

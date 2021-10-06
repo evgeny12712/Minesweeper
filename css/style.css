@@ -20,7 +20,6 @@ h1,
 h4 {
     color: white;
     margin: 5px;
-    ;
 }
 
 .level-btn {
@@ -34,7 +33,6 @@ h4 {
 
 button:hover {
     background-color: #f6c156;
-    /* Green */
     color: white;
 }
 
@@ -53,6 +51,14 @@ button:hover {
 
 .empty-cell {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+#table-container {
+    display: inline-block;
+}
+
+#time-safe-container {
+    display: inline-block;
 }
 
 #lives {
@@ -86,10 +92,41 @@ button:hover {
     margin: 10px;
     border: 1px solid #f6c156;
     transition-duration: 0.4s;
-    display: inline;
 }
 
 #hints-btn:hover {
     background-color: #f6c156;
+    color: white;
+}
+
+#best-score-h4 {
+    display: none;
+}
+
+#h4-time {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+#safe-click-btn,
+#seven-boom-btn {
+    display: inline;
+    background-color: white;
+    color: black;
+    margin-left: 20px;
+    border: 2px solid #008CBA;
+    transition-duration: 0.4s;
+}
+
+#safe-click-btn:hover,
+#seven-boom-btn:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+small {
+    font-size: 10px;
+    display: block;
+    margin-left: 225px;
     color: white;
 }

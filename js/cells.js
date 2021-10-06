@@ -4,12 +4,18 @@ function cellClicked(elCell) {
     startTimer();
     var cellLocation = getLocationFromElCell(elCell);
     var cell = gBoard[cellLocation.i][cellLocation.j];
+    if (gSevenBoomActive) {
+        setMinesNegsCount();
+        gGame.isOn = true;
+        gSevenBoomActive = false;
+    }
     if (!gGame.isOn) {
         gGame.isOn = true;
         setMinesRandomly(cellLocation);
         setMinesNegsCount();
     } else if (gHintMode) {
-        revealMode(cellLocation);
+        revealCells(cellLocation);
+        return;
     } else if (cell.isMine) {
         updateLives(--gLives);
         if (!gLives) {
@@ -41,13 +47,12 @@ function revealneighborsCells(cellLocation) {
         for (var j = cellLocation.j - 1; j <= cellLocation.j + 1; j++) {
             if (j < 0 || j >= gLevel.SIZE) continue;
             if (i === cellLocation.i && j === cellLocation.j) continue;
-            if (!gBoard[i][j].isShown) {
-                gHintRevealedCells.push({ cell: gBoard[i][j], location: { i: i, j: j } });
-                gBoard[i][j].isShown = true;
-                gGame.shownCount++;
-                if (gBoard[i][j].isMine) renderCell({ i, j }, MINE_IMG);
-                else renderCell({ i, j }, gBoard[i][j].minesAroundCount);
-            }
+            if (gBoard[i][j].isShown || gBoard[i][j].isMarked) continue;
+            gHintRevealedCells.push({ cell: gBoard[i][j], location: { i: i, j: j } });
+            gBoard[i][j].isShown = true;
+            if (gBoard[i][j].isMine) renderCell({ i, j }, MINE_IMG);
+            else renderCell({ i, j }, gBoard[i][j].minesAroundCount);
+
         }
     }
     gHintRevealedCells.push({ cell: gBoard[cellLocation.i][cellLocation.j], location: cellLocation });
@@ -58,8 +63,10 @@ function hideRevealedCells() {
         var cell = gHintRevealedCells[i].cell;
         var location = gHintRevealedCells[i].location;
         cell.isShown = false;
-        gGame.shownCount--;
-        renderCell(location, '');
+        if (cell.isMarked) renderCell(location, FLAG_IMG);
+        else {
+            renderCell(location, '');
+        }
     }
     gHintRevealedCells = [];
 }
@@ -70,13 +77,13 @@ function markCell(elCell) {
     var cell = getCellFromEl(elCell);
     if (!cell.isMarked) {
         cell.isMarked = true;
-        gGame.markedCount++;
+        if (cell.isMine) gGame.markedCount++;
         renderCell(getLocationFromElCell(elCell), FLAG_IMG);
     } else {
         var value = EMPTY;
         if (cell.isShown) value = cell.minesAroundCount;
         renderCell(getLocationFromElCell(elCell), value);
-        gGame.markedCount--;
+        if (cell.isMine) gGame.markedCount--;
         cell.isMarked = false;
     }
     isWin();
