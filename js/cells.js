@@ -18,7 +18,8 @@ function cellClicked(elCell) {
     } else if (gHintMode) {
         revealCells(cellLocation);
         return;
-    } else if (cell.isMine) {
+    }
+    if (cell.isMine) {
         updateLives(--gLives);
         if (!gLives) {
             cell.isShown = true;

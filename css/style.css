@@ -82,10 +82,11 @@ button:hover {
 
 #hints-container {
     display: inline-flex;
-    margin-left: 100px;
+    margin-right: 50px;
 }
 
-#hints-btn {
+#hints-btn,
+#manual-pos-btn {
     background-color: white;
     color: black;
     padding: 1px 5px;
@@ -94,7 +95,8 @@ button:hover {
     transition-duration: 0.4s;
 }
 
-#hints-btn:hover {
+#hints-btn:hover,
+#manual-pos-btn:hover {
     background-color: #f6c156;
     color: white;
 }

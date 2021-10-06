@@ -40,10 +40,14 @@ var gHintRevealedCells = [];
 
 var gSafeClicksCount = 3;
 
+//SEVEN BOOM
 var gSevenBoomActive = false;
+var gIsFromSevenBoom = false;
 
+//MANUAL POSITIONING
 var gManualMinesActive = false;
 var gMinesCounter = 0;
+var gIsFromManualPos = false;
 
 function initGame() {
     gBoard = buildBoard();
@@ -188,6 +192,13 @@ function resetGame() {
     updateSafeClicksCount();
     updateTimer(0);
     updateEmoji('normal');
+    if (!gIsFromManualPos) {
+        gManualMinesActive = false;
+        resetPosManualBtn();
+    }
+    if (!gIsFromSevenBoom) {
+        gSevenBoomActive = false;
+    }
     initGame();
 }
 
@@ -396,6 +407,7 @@ function updateSafeClicksCount() {
 //////////////////////////SEVEN_BOOM//////////////////////////
 function sevenBoomClicked() {
     gSevenBoomActive = true;
+    gIsFromSevenBoom = true;
     resetGame();
 }
 
@@ -406,5 +418,13 @@ function positionMinesManually(btn) {
     btn.style.backgroundColor = '#f6c156';
     gManualMinesActive = true;
     cellCursor(true);
+    gIsFromManualPos = true;
     resetGame();
+}
+
+function resetPosManualBtn() {
+    var elPosManualBtn = document.getElementById('manual-pos-btn');
+    elPosManualBtn.style.backgroundColor = 'white';
+    elPosManualBtn.innerText = 'Position Manually';
+
 }

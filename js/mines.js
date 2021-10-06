@@ -49,6 +49,7 @@ function setup7BoomMines() {
 }
 
 function addMinesManually(cell) {
+    gIsFromManualPos = false;
     if (!cell.isMine) {
         var elPosManualBtn = document.getElementById('manual-pos-btn');
         cell.isMine = true;
